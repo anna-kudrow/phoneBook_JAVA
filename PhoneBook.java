@@ -3,7 +3,7 @@ import java.util.*;
 public class PhoneBook {
     static HashMap<String, Integer> pb = new HashMap<>();
     public static void main(String[] args) {
-        Map<String, List<String>> map = new HashMap<>();
+        Map<String, HashSet<String>> map = new HashMap<>();
 
         updateBook(map, "Artem Artemich", "6665749" );
         updateBook(map, "Anna Annushka", "7705566" );
@@ -11,10 +11,11 @@ public class PhoneBook {
         updateBook(map, "Lalala Tata", "6675566" );
         updateBook(map, "ASD Tata", "9999999" );
         updateBook(map, "ASD Tata", "8888888" );
+        updateBook(map, "ASD Tata", "8888888" );
 
-        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+        for (Map.Entry<String, HashSet<String>> entry : map.entrySet()) {
             String key = entry.getKey();
-            List<String> value = entry.getValue();
+            HashSet<String> value = entry.getValue();
             System.out.println(key + value);
 //            System.out.println();
         }
@@ -23,12 +24,12 @@ public class PhoneBook {
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .forEach(System.out::println);
     }
-    private static void updateBook(Map<String, List<String>> map, String key, String value) {
+    private static void updateBook(Map<String, HashSet<String>> map, String key, String value) {
         if (map.containsKey(key)) {
-            List<String> oldVal = map.get(key);
+            HashSet<String> oldVal = map.get(key);
             oldVal.add(value);
         } else {
-            List<String> newList = new ArrayList<>();
+            HashSet<String> newList = new HashSet<>();
             newList.add(value);
             map.put(key, newList);
         }
